@@ -1,0 +1,17 @@
+@import "../../styles/util-mixins";
+
+.container {
+
+  .column-1 {
+    @include flex-center-start;
+  }
+
+  .column-2 {
+    @include flex-center-end;
+  }
+
+  img {
+    height: 350px;
+    width: 350px;
+  }
+}

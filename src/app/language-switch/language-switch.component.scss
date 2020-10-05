@@ -1,0 +1,8 @@
+@import '/src/app/styles/util-mixins';
+@import '/src/app/styles/font-mixins';
+
+.language-select {
+  @include body-2;
+  @include flex-center;
+  cursor: pointer;
+}

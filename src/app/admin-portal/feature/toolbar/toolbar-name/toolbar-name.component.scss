@@ -1,0 +1,10 @@
+@import '../../../../styles/font-mixins';
+@import '../../../../themes/app-theme';
+
+.toolbar-name {
+
+  @include h2-headline;
+  span {
+    color: $primary;
+  }
+}

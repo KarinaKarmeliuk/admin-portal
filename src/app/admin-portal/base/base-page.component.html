@@ -1,0 +1,35 @@
+<div class="page-wrapper">
+
+  <mat-sidenav-container class="menu-container">
+    <mat-sidenav mode="side" opened>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/ap/clients-list" routerLinkActive="active">
+          {{'page_clients-list_name' | translate}}
+        </a>
+        <a mat-list-item routerLink="/ap/about" routerLinkActive="active">
+          {{'page_about_name' | translate}}
+        </a>
+        <mat-divider></mat-divider>
+        <app-user-menu></app-user-menu>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <div *ngIf="show"
+           class="workspace__loader workspace--background">
+        <div class="workspace__loading ">
+          <svg class="spinner spinner-color" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                    stroke-miterlimit="10"></circle>
+          </svg>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+
+</div>

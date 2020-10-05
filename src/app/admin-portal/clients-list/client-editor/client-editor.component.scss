@@ -1,0 +1,35 @@
+@import "../../../../../src/app/styles/util-mixins";
+@import "../../../../../src/app/styles/font-mixins";
+
+.edit-form {
+  width: 60%;
+  margin: 10px 10px 10px 30px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+
+  .send-error {
+    @include body-2;
+    padding: 10px;
+  }
+
+  label {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  mat-radio-button, mat-checkbox {
+    margin-right: 15px;
+    padding-bottom: 15px;
+  }
+
+  button.submit {
+    margin-top: 20px;
+    width: 100px !important;
+  }
+}
+
+
+

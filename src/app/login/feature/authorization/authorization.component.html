@@ -1,0 +1,37 @@
+
+<mat-card class="logo-card">
+  <mat-card-header>
+    <mat-card-title>{{'page_login_loginHeader' | translate}}</mat-card-title>
+    <mat-card-subtitle> © {{getAppTitle()}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <img mat-card-image class="logo-img" src="https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-devices-vol-5/60/017_227_network_connection_connect_internet_server_web_ping-512.png" alt="Logo">
+
+    <form [formGroup]="loginForm" class="login-form">
+
+      <mat-form-field color="accent">
+        <input type="text" matInput placeholder="{{'page_login_user_login' | translate }}" formControlName="username">
+        <mat-error>{{getLoginErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="accent">
+        <input type="password" matInput placeholder="{{'page_login_user_password' | translate }}" formControlName="password">
+        <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="error" class="send-error">{{getServerErrorMessage()}}</mat-error>
+
+      <div class="login-container__buttons">
+        <button type="submit" mat-raised-button (click)="onLogin()" color="primary">
+          {{'page_login_actions_enter' | translate }}
+        </button>
+        <app-language-switch></app-language-switch>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+</mat-card>
+

@@ -1,0 +1,29 @@
+@import "../../themes/app-theme";
+
+.container {
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  font-size: 14px !important;
+  color: $accent !important;
+  text-align: center !important;
+}
+
+td.mat-cell {
+  text-align: center !important;
+  cursor: pointer;
+}
+
+tr.mat-row:hover {
+  background-color: $primary;
+}
+
+tr.mat-row:hover {
+  background-color: $primary;
+}
+

@@ -1,0 +1,67 @@
+{
+  "app_title" : "Net Service Admin Portal",
+
+  "page_login_loginHeader": "Логин",
+  "page_login_user_login": "user@example.com",
+  "page_login_user_password": "Пароль",
+  "page_login_actions_enter": "Войти",
+  "page_login_remember_me": "Запомнить меня",
+  "page_login_actions_registration": "Зарегистрировать аккаунт",
+  "page_login_actions_authorization": "Вернуться на страницу входа",
+  "page_recovery_password_title": "Сброс пароля",
+  "page_login_actions_send": "Сбросить пароль",
+  "page_login_actions_recovery": "Восстановить пароль",
+  "page_login_error_email_or_pass": "Неверные почта или пароль",
+  "page_login_error_user_blocked": "Этот пользователь заблокирован",
+  "page_login_error_requiredName": "Необходимо ввести имя пользователя",
+  "page_login_server_error": "Ошибка аутентификации",
+  "page_login_error_minLength": "Пароль должен быть длиннее 4 символов",
+  "page_login_error_requiredPass": "Необходимо ввести пароль",
+  "page_login_error_email": "Неправильный формат email",
+  "page_login_recovery_massage": "Введите адрес электронной почты, чтобы сбросить пароль. Инструкция по восстановлению пароля будет отправлена Вам по электронной почте.",
+  "page_login_recovery_massage_successful": "Письмо с информацией о смене пароля отправлено на Ваш адрес электронной почты",
+
+  "change_language" : "Сменить язык",
+  "ru_language" : "Русский",
+  "en_language" : "Английский",
+
+  "main_menu_logout" : "Выйти",
+
+  "error_page_not_found": "Не удалось найти страницу, которую вы ищете.",
+  "error_page_not_found_help": "Используйте навигацию слева, чтобы найти нужную страницу",
+
+  "ipAddress": "IP адрес",
+  "regDate" : "Дата",
+  "priority" : "Приоритет",
+  "internetAccess" : "Интернет-доступ",
+  "turboNightService" : "Услуга Турбо-ночь",
+  "premiumRepairService" : "Услуга Премиум-ремонт",
+  "problemDesc" : "Описание проблемы",
+
+  "page_clients-list_name" : "Заявки клиентов",
+  "page_clients-list__tableColumn_name" : "Имя клиента",
+  "page_clients-list__search_placeholder" : "Начните ввод для поиска...",
+  "page_clients-list__print_alert" : "Список заявок клиентов будет распечатан!",
+  "page_clients-list__send_alert" : "Ссылка на текущий список заявок клиентов будет отправлена на Вашу почту!",
+
+  "page_editor_name" : "Редактор заявки клиента",
+  "page_editor_client_firstName" : "Имя",
+  "page_editor_client_lastName" : "Фамилия",
+  "page_editor_services" : "Услуги",
+  "page_editor_error_requiredField" : "Это поле обязательно!",
+  "page_editor_submit_message" : "Изменения отправлены!",
+
+  "internetAccess_active" : "Есть",
+  "internetAccess_notActive" : "Нет",
+  "service_state_available": "Доступно",
+  "service_state_notAvailable": "Не доступно",
+
+  "high" : "Высокий",
+  "medium" : "Средний",
+  "low" : "Низкий",
+
+  "page_about_name" : "Про админ-портал",
+
+  "fake_page_text_1" : "Работа над моей прелестью всё ещё продолжатся... Мы усердно трудимся, хозяин. Приходи попозже, хозяин!",
+  "fake_page_text_2" : "Или мы просто не укладываемя в сроки?!.."
+}

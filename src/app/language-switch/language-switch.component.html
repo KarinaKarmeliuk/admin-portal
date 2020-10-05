@@ -1,0 +1,9 @@
+<div class="language-select">
+  <mat-form-field  color="accent" appearance="fill">
+    <mat-label>{{'change_language' | translate }}</mat-label>
+    <mat-select [(value)]="selectedLanguage">
+      <mat-option [value]="'en'" (click)="switchLanguage('en')">{{'en_language' | translate }}</mat-option>
+      <mat-option [value]="'ru'" (click)="switchLanguage('ru')">{{'ru_language' | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

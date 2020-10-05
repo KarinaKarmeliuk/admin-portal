@@ -1,0 +1,17 @@
+<div class="user-menu">
+
+  <div class="user-menu__info">
+    <img class="account" src="../../../../../assets/images/account_36dp.png"/>
+    <span> {{username}} </span>
+  </div>
+
+  <div class="user-menu__logout" matRipple
+       (click)="logout()">
+    <button type="button" mat-icon-button>{{'main_menu_logout' | translate }}</button>
+    <img class="icon" src="../../../../../assets/images/out_64.png"/>
+  </div>
+
+  <div>
+    <app-language-switch></app-language-switch>
+  </div>
+</div>

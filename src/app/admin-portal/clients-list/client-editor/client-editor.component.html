@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+
+    <div class="toolbar">
+      <app-toolbar>
+        <app-toolbar-name [name]="title"></app-toolbar-name>
+      </app-toolbar>
+    </div>
+
+    <div class="page-content">
+      <form *ngIf="isFormReady" [formGroup]="editForm" class="edit-form">
+
+        <mat-form-field color="accent">
+          <mat-label>ID:</mat-label>
+          <input type="text" [readonly]="true" matInput formControlName="id">
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <mat-label>{{'page_editor_client_firstName' | translate }}</mat-label>
+          <input type="text" matInput formControlName="firstName" [(ngModel)]="client.firstName">
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <mat-label>{{'page_editor_client_lastName' | translate }}</mat-label>
+          <input type="text" matInput formControlName="lastName" [(ngModel)]="client.lastName">
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <mat-label>{{'ipAddress' | translate }}</mat-label>
+          <input type="text" matInput formControlName="ipAddress" [(ngModel)]="client.ipAddress">
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'regDate' | translate }}</mat-label>
+          <input matInput [matDatepicker]="regDate" formControlName="regDate" [(ngModel)]="client.regDate">
+          <mat-datepicker-toggle matSuffix [for]="regDate"></mat-datepicker-toggle>
+          <mat-datepicker #regDate ></mat-datepicker>
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'priority' | translate }}</mat-label>
+          <input type="text"
+                 aria-label="Number"
+                 matInput
+                 formControlName="priority"
+                 [(ngModel)]="client.priority"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | priorityFormatNumber">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'problemDesc' | translate }}</mat-label>
+          <input type="text" matInput formControlName="problemDesc" [(ngModel)]="client.problemDesc">
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="error" class="send-error">{{getErrorMessage()}}</mat-error>
+
+        <label>{{'internetAccess' | translate }}</label>
+        <mat-radio-group formControlName="internetAccess" [(ngModel)]="client.internetAccess">
+          <mat-radio-button [checked]=client.internetAccess value="true">{{'internetAccess_active' | translate}}</mat-radio-button>
+          <mat-radio-button [checked]=!client.internetAccess value="false">{{'internetAccess_notActive' | translate}}</mat-radio-button>
+        </mat-radio-group>
+
+        <label>{{'page_editor_services' | translate }}</label>
+        <section class="services">
+          <mat-checkbox formControlName="turboNightService" [(ngModel)]="client.turboNightService" >
+            {{'turboNightService' | translate}}
+          </mat-checkbox>
+          <mat-checkbox formControlName="premiumRepairService" [(ngModel)]="client.premiumRepairService">
+            {{'premiumRepairService' | translate}}
+          </mat-checkbox>
+        </section>
+
+        <button class="submit" mat-stroked-button (click)="onSubmit()" color="accent"> Submit </button>
+      </form>
+
+    </div>
+
+  </div>
+</div>

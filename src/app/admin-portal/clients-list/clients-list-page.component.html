@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+
+    <div class="toolbar">
+      <app-toolbar>
+        <app-toolbar-name [name]="title"></app-toolbar-name>
+        <app-toolbar-search>
+          <div class="search_field">
+            <mat-form-field style="width:400px !important">
+              <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="{{'page_clients-list__search_placeholder' | translate }}">
+            </mat-form-field>
+          </div>
+        </app-toolbar-search>
+        <app-toolbar-buttons></app-toolbar-buttons>
+      </app-toolbar>
+    </div>
+
+    <div class="page-content">
+
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Application ID column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+          <td mat-cell *matCellDef="let client"> {{client.id}} </td>
+        </ng-container>
+
+        <!-- Client's name column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'page_clients-list__tableColumn_name' | translate}} </th>
+          <td mat-cell *matCellDef="let client"> {{client.firstName}} {{client.lastName}} </td>
+        </ng-container>
+
+        <!-- IP address -->
+        <ng-container matColumnDef="ipAddress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ipAddress' | translate}} </th>
+          <td mat-cell *matCellDef="let client"> {{client.ipAddress}} </td>
+        </ng-container>
+
+        <!-- Application registration date -->
+        <ng-container matColumnDef="regDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'regDate' | translate}} </th>
+          <td mat-cell *matCellDef="let client"> {{client.regDate | date:'shortDate'}} </td>
+        </ng-container>
+
+        <!-- Priority -->
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'priority' | translate}} </th>
+          <td mat-cell *matCellDef="let client"> {{(client.priority | priorityFormatString) | translate}} </td>
+        </ng-container>
+
+        <!-- Internet access availability -->
+        <ng-container matColumnDef="internetAccess">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'internetAccess' | translate}} </th>
+          <td mat-cell *matCellDef="let client">
+            <span *ngIf="client.internetAccess">
+              {{'internetAccess_active' | translate}}
+            </span>
+            <span *ngIf="!client.internetAccess">
+              {{'internetAccess_notActive' | translate}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Turbo-night service availability -->
+        <ng-container matColumnDef="turboNightService">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'turboNightService' | translate}} </th>
+          <td mat-cell *matCellDef="let client">
+            <span *ngIf="client.turboNightService">
+              {{'service_state_available' | translate}}
+            </span>
+            <span *ngIf="!client.turboNightService">
+              {{'service_state_notAvailable' | translate}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Premium repair service -->
+        <ng-container matColumnDef="premiumRepairService">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'premiumRepairService' | translate}} </th>
+          <td mat-cell *matCellDef="let client">
+            <span *ngIf="client.premiumRepairService">
+              {{'service_state_available' | translate}}
+            </span>
+            <span *ngIf="!client.premiumRepairService">
+              {{'service_state_notAvailable' | translate}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Problem description -->
+        <ng-container matColumnDef="problemDesc">
+          <th mat-header-cell *matHeaderCellDef> {{'problemDesc' | translate}} </th>
+          <td mat-cell *matCellDef="let client"> {{client.problemDesc}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEditEntityForm(row)"
+            matRipple
+            [matRippleCentered]="false"
+            [matRippleRadius]="30"
+            [matRippleUnbounded]="true"></tr>
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 15]"
+                     [pageSize]="10"
+                     [length]="dataSource.data.length"
+                     showFirstLastButtons></mat-paginator>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

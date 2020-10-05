@@ -1,0 +1,67 @@
+{
+  "app_title" : "Net Service Admin Portal",
+
+  "page_login_loginHeader": "Login",
+  "page_login_user_login": "user@example.com",
+  "page_login_user_password": "Password",
+  "page_login_actions_enter": "Enter",
+  "page_login_remember_me": "Remember me",
+  "page_login_actions_registration": "Register an account",
+  "page_login_actions_authorization": "Return to login page",
+  "page_recovery_password_title": "Reset password",
+  "page_login_actions_send": "Reset the password",
+  "page_login_actions_recovery": "Restore password",
+  "page_login_error_email_or_pass": "Incorrect email or password",
+  "page_login_error_user_blocked": "This user is blocked",
+  "page_login_error_requiredName": "User name is required",
+  "page_login_server_error": "Authentication error",
+  "page_login_error_minLength": "Password must be longer 4 symbol",
+  "page_login_error_requiredPass": "Password is required",
+  "page_login_error_email": "Wrong email",
+  "page_login_recovery_massage": "Enter your email to reset the password. Password recovery instructions will be sent to your email.",
+  "page_login_recovery_massage_successful": "Password recovery information was sent to your email",
+
+  "change_language" : "Change language",
+  "ru_language" : "Russian",
+  "en_language" : "English",
+
+  "main_menu_logout" : "Logout",
+
+  "error_page_not_found": "Could not find the page you're looking for",
+  "error_page_not_found_help": "Use the navigation on the left to find the page you need",
+
+  "ipAddress": "IP Address",
+  "regDate" : "Date",
+  "priority" : "Priority",
+  "internetAccess" : "Internet Access",
+  "turboNightService" : "Turbo-Night Service",
+  "premiumRepairService" : "Premium Repair Service",
+  "problemDesc" : "Problem Description",
+
+  "page_clients-list_name" : "Client Applications",
+  "page_clients-list__tableColumn_name" : "Client's name",
+  "page_clients-list__search_placeholder" : "Type for search...",
+  "page_clients-list__print_alert" : "The list of client applications will be printed!",
+  "page_clients-list__send_alert" : "The link to current list of client applications will be sent to your email!",
+
+  "page_editor_name" : "Client Application Editor",
+  "page_editor_client_firstName" : "Name",
+  "page_editor_client_lastName" : "Surname",
+  "page_editor_services" : "Services",
+  "page_editor_error_requiredField" : "This field is required!",
+  "page_editor_submit_message" : "Changes are submitted!",
+
+  "internetAccess_active" : "Active",
+  "internetAccess_notActive" : "Not active",
+  "service_state_available": "Available",
+  "service_state_notAvailable": "Not Available",
+
+  "high" : "High",
+  "medium" : "Medium",
+  "low" : "Low",
+
+  "page_about_name" : "About",
+
+  "fake_page_text_1" : "The development of my precious is still in process... We are working hard, master. Come later, master!",
+  "fake_page_text_2" : "Or we just run out of time?!.."
+}
