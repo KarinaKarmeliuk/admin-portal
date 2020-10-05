@@ -14,7 +14,7 @@ export class UserMenuComponent implements OnInit {
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    let json_o = JSON.parse(localStorage.getItem('currentUser'));
+    const json_o = JSON.parse(localStorage.getItem('currentUser'));
     let user = new User();
     user = json_o;
     this.username = user.username;

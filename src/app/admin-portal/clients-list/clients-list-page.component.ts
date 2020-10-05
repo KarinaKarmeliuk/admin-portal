@@ -64,7 +64,7 @@ export class ClientsListPageComponent implements OnInit, AfterViewInit {
         (err: any) => {
         this.error = err.message;
         this.loading = false;
-        })
+        });
   }
 
   goToEditEntityForm(data: any): void {

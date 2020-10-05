@@ -1,6 +1,16 @@
 @import "../../../../../src/app/styles/util-mixins";
 @import "../../../../../src/app/styles/font-mixins";
 
+.page-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.clock {
+  @include flex-center();
+  width: 40%;
+}
+
 .edit-form {
   width: 60%;
   margin: 10px 10px 10px 30px;

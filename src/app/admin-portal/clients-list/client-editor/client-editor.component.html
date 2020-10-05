@@ -17,25 +17,25 @@
 
         <mat-form-field color="accent">
           <mat-label>{{'page_editor_client_firstName' | translate }}</mat-label>
-          <input type="text" matInput formControlName="firstName" [(ngModel)]="client.firstName">
+          <input type="text" matInput formControlName="firstName" [value]="client.firstName">
           <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field color="accent">
           <mat-label>{{'page_editor_client_lastName' | translate }}</mat-label>
-          <input type="text" matInput formControlName="lastName" [(ngModel)]="client.lastName">
+          <input type="text" matInput formControlName="lastName" [value]="client.lastName">
           <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field color="accent">
           <mat-label>{{'ipAddress' | translate }}</mat-label>
-          <input type="text" matInput formControlName="ipAddress" [(ngModel)]="client.ipAddress">
+          <input type="text" matInput formControlName="ipAddress" [value]="client.ipAddress">
           <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'regDate' | translate }}</mat-label>
-          <input matInput [matDatepicker]="regDate" formControlName="regDate" [(ngModel)]="client.regDate">
+          <input matInput [matDatepicker]="regDate" formControlName="regDate" [value]="client.regDate">
           <mat-datepicker-toggle matSuffix [for]="regDate"></mat-datepicker-toggle>
           <mat-datepicker #regDate ></mat-datepicker>
           <mat-error>{{getErrorMessage()}}</mat-error>
@@ -44,13 +44,12 @@
         <mat-form-field>
           <mat-label>{{'priority' | translate }}</mat-label>
           <input type="text"
-                 aria-label="Number"
                  matInput
                  formControlName="priority"
-                 [(ngModel)]="client.priority"
+                 [value]="client.priority | priorityFormatString"
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | priorityFormatNumber">
+            <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | translate | priorityFormatNumber">
               {{option | translate}}
             </mat-option>
           </mat-autocomplete>
@@ -59,30 +58,34 @@
 
         <mat-form-field>
           <mat-label>{{'problemDesc' | translate }}</mat-label>
-          <textarea matInput formControlName="problemDesc" [(ngModel)]="client.problemDesc"></textarea>
+          <textarea matInput formControlName="problemDesc" [value]="client.problemDesc"></textarea>
           <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-error *ngIf="error" class="send-error">{{getErrorMessage()}}</mat-error>
 
         <label>{{'internetAccess' | translate }}</label>
-        <mat-radio-group formControlName="internetAccess" [(ngModel)]="client.internetAccess">
+        <mat-radio-group formControlName="internetAccess" [value]="client.internetAccess">
           <mat-radio-button [checked]=client.internetAccess value="true">{{'internetAccess_active' | translate}}</mat-radio-button>
           <mat-radio-button [checked]=!client.internetAccess value="false">{{'internetAccess_notActive' | translate}}</mat-radio-button>
         </mat-radio-group>
 
         <label>{{'page_editor_services' | translate }}</label>
         <section class="services">
-          <mat-checkbox formControlName="turboNightService" [(ngModel)]="client.turboNightService" >
+          <mat-checkbox formControlName="turboNightService" [value]="client.turboNightService" >
             {{'turboNightService' | translate}}
           </mat-checkbox>
-          <mat-checkbox formControlName="premiumRepairService" [(ngModel)]="client.premiumRepairService">
+          <mat-checkbox formControlName="premiumRepairService" [value]="client.premiumRepairService">
             {{'premiumRepairService' | translate}}
           </mat-checkbox>
         </section>
 
         <button class="submit" mat-stroked-button (click)="onSubmit()" color="accent"> Submit </button>
       </form>
+
+      <div class="clock">
+        <app-clock></app-clock>
+      </div>
 
     </div>
 

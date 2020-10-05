@@ -43,21 +43,12 @@ export class ClientEditorComponent implements OnInit {
   ngOnInit(): void {
 
     this.editForm = new FormGroup({});
-
-    this.filteredPriorityOptions = this.f.priority.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.priority_options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  get f() {
-    return this.editForm.controls;
   }
 
   get firstName() { return this.editForm.get('firstName'); }
@@ -99,6 +90,11 @@ export class ClientEditorComponent implements OnInit {
       new FormControl(this.client.premiumRepairService, Validators.required));
     this.editForm.addControl('problemDesc',
       new FormControl(this.client.problemDesc, Validators.required));
+
+    this.filteredPriorityOptions = this.priority.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   getClient(observable: Observable<ClientApplication>): void {
@@ -111,7 +107,7 @@ export class ClientEditorComponent implements OnInit {
       this.fillEditForm();
       this.isFormReady = true;
     },
-      (errorData: any) => console.log('getClient() failed: ', errorData),)
+      (errorData: any) => console.log('getClient() failed: ', errorData));
   }
 
   onSubmit() {
@@ -121,6 +117,15 @@ export class ClientEditorComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     }
+    this.client.firstName = this.firstName.value;
+    this.client.lastName = this.lastName.value;
+    this.client.regDate = this.regDate.value;
+    this.client.ipAddress = this.ipAddress.value;
+    this.client.internetAccess = this.internetAccess.value;
+    this.client.turboNightService = this.turboNightService.value;
+    this.client.premiumRepairService = this.premiumRepairService.value;
+    this.client.problemDesc = this.problemDesc.value;
+
     this.clientsService.updateClient(this.client)
       .pipe(first())
       .subscribe(
@@ -128,7 +133,7 @@ export class ClientEditorComponent implements OnInit {
           alert(this.getMessage('page_editor_submit_message'));
         },
         error => {
-          console.log(error.error);
+          console.log('error');
           this.error = error.error;
         }
       );

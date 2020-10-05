@@ -222,7 +222,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         case url.endsWith('/api/clients/update') && method === 'POST':
           return updateClientState(body);
         case url.startsWith('/api/clients') && url.match('[0-9]$') && method === 'GET':
-          let param = url.split('clients/')[1];
+          const param = url.split('clients/')[1];
           return getClient(param);
         case url.endsWith('/api/clients') && method === 'GET':
           return getClients();
