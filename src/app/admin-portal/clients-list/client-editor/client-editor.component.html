@@ -51,7 +51,7 @@
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | priorityFormatNumber">
-              {{option}}
+              {{option | translate}}
             </mat-option>
           </mat-autocomplete>
           <mat-error>{{getErrorMessage()}}</mat-error>
@@ -59,7 +59,7 @@
 
         <mat-form-field>
           <mat-label>{{'problemDesc' | translate }}</mat-label>
-          <input type="text" matInput formControlName="problemDesc" [(ngModel)]="client.problemDesc">
+          <textarea matInput formControlName="problemDesc" [(ngModel)]="client.problemDesc"></textarea>
           <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 

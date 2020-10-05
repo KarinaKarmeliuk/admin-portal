@@ -20,7 +20,7 @@ export class ClientEditorComponent implements OnInit {
   client: ClientApplication; //new ClientApplication();
 
   editForm: FormGroup;
-  priority_options: string[];
+  priority_options: string[] = ['high', 'medium', 'low'];
 
   filteredPriorityOptions: Observable<string[]>;
 
@@ -40,14 +40,7 @@ export class ClientEditorComponent implements OnInit {
     this.getClient(this.clientsService.getClientById(this.id));
   }
 
-
   ngOnInit(): void {
-    if (localStorage.getItem('currentLang') == 'en') {
-      this.priority_options = ['Low', 'Medium', 'High'];
-    }
-    else {
-      this.priority_options = ['Низкий', 'Средний', 'Высокий'];
-    }
 
     this.editForm = new FormGroup({});
 
@@ -148,22 +141,3 @@ export class ClientEditorComponent implements OnInit {
   }
 
 }
-
-/*
- this.authService.login(this.f.username.value, this.f.password.value)
-    .pipe(first())
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(
-      () => {
-        this.loading = false;
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl(this.returnUrl);
-        window.location.reload();
-      },
-      error => {
-        console.log(error.error.message);
-        console.log(error.message);
-        this.error = error.error.message;
-        this.loading = false;
-      });
- */

@@ -29,6 +29,11 @@
     margin-top: 20px;
     width: 100px !important;
   }
+
+  textarea {
+    max-height: 200px;
+    min-height: 30px;
+  }
 }
 
 

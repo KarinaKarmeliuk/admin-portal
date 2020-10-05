@@ -28,6 +28,7 @@ export class ClientsListPageComponent implements OnInit, AfterViewInit {
     'premiumRepairService',
     'problemDesc'
   ];
+
   loading: boolean;
   error: '';
 
