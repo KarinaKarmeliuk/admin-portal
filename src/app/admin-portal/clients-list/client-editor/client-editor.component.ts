@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, finalize, first, map, startWith } from 'rxjs/operators';
 import { ClientApplication } from 'src/app/models';
 import { ClientsService } from 'src/app/services/clients.service';
+import { PriorityFormatNumberPipe } from 'src/app/shared/pipes/priority-format-number.pipe';
+import { PriorityFormatStringPipe } from 'src/app/shared/pipes/priority-format-string.pipe';
 import * as CustomValidators from 'src/app/shared/validators';
 
 @Component({
@@ -16,7 +18,7 @@ import * as CustomValidators from 'src/app/shared/validators';
 export class ClientEditorComponent implements OnInit {
 
   title: string = 'page_editor_name';
-  id: number;
+  clientId: number;
   client: ClientApplication; //new ClientApplication();
 
   editForm: FormGroup;
@@ -32,17 +34,20 @@ export class ClientEditorComponent implements OnInit {
 
   private subscription: Subscription;
 
+  priorityFormatNumberPipe = new PriorityFormatNumberPipe();
+  priorityFormatStringPipe = new PriorityFormatStringPipe();
+
   constructor(private activateRoute: ActivatedRoute,
               private clientsService: ClientsService,
               private translateService: TranslateService) {
-    this.subscription = activateRoute.params.subscribe(params => this.id = params['id']);
+    this.subscription = activateRoute.params.subscribe(params => this.clientId = params['id']);
 
-    this.getClient(this.clientsService.getClientById(this.id));
+    this.getClient(this.clientsService.getClientById(this.clientId));
   }
 
   ngOnInit(): void {
 
-    this.editForm = new FormGroup({});
+    //this.editForm = new FormGroup({});
   }
 
   private _filter(value: string): string[] {
@@ -50,6 +55,8 @@ export class ClientEditorComponent implements OnInit {
 
     return this.priority_options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+  get id() { return this. editForm.get('id'); }
 
   get firstName() { return this.editForm.get('firstName'); }
 
@@ -70,26 +77,24 @@ export class ClientEditorComponent implements OnInit {
   get problemDesc() { return this.editForm.get('problemDesc'); }
 
   private fillEditForm() {
-    this.editForm.addControl('id',
-      new FormControl(this.client.id, [Validators.required, Validators.pattern("^[0-9]*$")]));
-    this.editForm.addControl('firstName',
-      new FormControl(this.client.firstName, Validators.required));
-    this.editForm.addControl('lastName',
-      new FormControl(this.client.lastName, Validators.required));
-    this.editForm.addControl('ipAddress',
-      new FormControl(this.client.ipAddress, [Validators.required, CustomValidators.ipv4()]));
-    this.editForm.addControl('regDate',
-      new FormControl(this.client.regDate, Validators.required));
-    this.editForm.addControl('priority',
-      new FormControl(this.client.priority, [Validators.required, Validators.pattern("^[1-3]*$")]));
-    this.editForm.addControl('internetAccess',
-      new FormControl(this.client.internetAccess, Validators.required));
-    this.editForm.addControl('turboNightService',
-      new FormControl(this.client.turboNightService, Validators.required));
-    this.editForm.addControl('premiumRepairService',
-      new FormControl(this.client.premiumRepairService, Validators.required));
-    this.editForm.addControl('problemDesc',
-      new FormControl(this.client.problemDesc, Validators.required));
+    let prio = '';
+    this.translateService.get(this.priorityFormatStringPipe.transform(this.client.priority))
+    .subscribe(
+    value => prio = value
+    );
+
+    this.editForm = new FormGroup({
+    id: new FormControl(this.client.id),
+    firstName: new FormControl(this.client.firstName, Validators.required),
+    lastName: new FormControl(this.client.lastName, Validators.required),
+    ipAddress: new FormControl(this.client.ipAddress, [Validators.required, CustomValidators.ipv4()]),
+    regDate: new FormControl(this.client.regDate, Validators.required),
+    priority: new FormControl(prio, [Validators.required, CustomValidators.validatePriority()]),
+    internetAccess: new FormControl(this.client.internetAccess, Validators.required),
+    turboNightService: new FormControl(this.client.turboNightService, Validators.required),
+    premiumRepairService: new FormControl(this.client.premiumRepairService, Validators.required),
+    problemDesc: new FormControl(this.client.problemDesc, Validators.required),
+    });
 
     this.filteredPriorityOptions = this.priority.valueChanges.pipe(
       startWith(''),
@@ -117,10 +122,12 @@ export class ClientEditorComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     }
+    this.client.id = this.id.value;
     this.client.firstName = this.firstName.value;
     this.client.lastName = this.lastName.value;
     this.client.regDate = this.regDate.value;
     this.client.ipAddress = this.ipAddress.value;
+    this.client.priority = this.priorityFormatNumberPipe.transform(this.priority.value);
     this.client.internetAccess = this.internetAccess.value;
     this.client.turboNightService = this.turboNightService.value;
     this.client.premiumRepairService = this.premiumRepairService.value;
@@ -135,6 +142,7 @@ export class ClientEditorComponent implements OnInit {
         error => {
           console.log('error');
           this.error = error.error;
+          console.log(error.message);
         }
       );
   }

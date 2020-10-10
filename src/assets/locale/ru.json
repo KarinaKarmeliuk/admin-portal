@@ -49,7 +49,8 @@
   "page_editor_client_lastName" : "Фамилия",
   "page_editor_services" : "Услуги",
   "page_editor_error_requiredField" : "Это поле обязательно!",
-  "page_editor_submit_message" : "Изменения отправлены!",
+  "page_editor_submit_message" : "Изменения сохранены!",
+  "page_editor_submit" : "Сохранить",
 
   "internetAccess_active" : "Есть",
   "internetAccess_notActive" : "Нет",

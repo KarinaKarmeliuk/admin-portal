@@ -258,17 +258,15 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       return ok(clients[id-1]);
     }
 
-    function updateClientState(body : ClientApplication) {
-      console.log(body);
-      clients[body.id].firstName = body.firstName;
-      console.log(clients[body.id]);
-      clients[body.id].lastName = body.lastName;
-      clients[body.id].ipAddress = body.ipAddress;
-      clients[body.id].regDate = body.regDate;
-      clients[body.id].internetAccess = body.internetAccess;
-      clients[body.id].turboNightService = body.turboNightService;
-      clients[body.id].premiumRepairService = body.premiumRepairService;
-      clients[body.id].problemDesc = body.problemDesc;
+    function updateClientState(body : any) {
+      clients[body.client.id-1].firstName = body.client.firstName;
+      clients[body.client.id-1].lastName = body.client.lastName;
+      clients[body.client.id-1].ipAddress = body.client.ipAddress;
+      clients[body.client.id-1].regDate = body.client.regDate;
+      clients[body.client.id-1].internetAccess = body.client.internetAccess;
+      clients[body.client.id-1].turboNightService = body.client.turboNightService;
+      clients[body.client.id-1].premiumRepairService = body.client.premiumRepairService;
+      clients[body.client.id-1].problemDesc = body.client.problemDesc;
       return ok('');
     }
 

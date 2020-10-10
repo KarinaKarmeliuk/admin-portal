@@ -8,3 +8,9 @@ export function validateEmailWithExclude(excludeEmail : string): ValidatorFn {
     return Validators.email(control);
   };
 }
+
+export function validatePriority() : ValidatorFn {
+   return (control: AbstractControl) : {[key : string]: any} => {
+     return Validators.pattern('High|Medium|Low|Высокий|Средний|Низкий');
+   }
+}

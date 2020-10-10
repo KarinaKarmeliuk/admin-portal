@@ -50,6 +50,7 @@
   "page_editor_services" : "Services",
   "page_editor_error_requiredField" : "This field is required!",
   "page_editor_submit_message" : "Changes are submitted!",
+  "page_editor_submit" : "Submit",
 
   "internetAccess_active" : "Active",
   "internetAccess_notActive" : "Not active",

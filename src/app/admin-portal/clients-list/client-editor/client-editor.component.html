@@ -46,10 +46,9 @@
           <input type="text"
                  matInput
                  formControlName="priority"
-                 [value]="client.priority | priorityFormatString"
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | translate | priorityFormatNumber">
+            <mat-option *ngFor="let option of filteredPriorityOptions | async" [value]="option | translate">
               {{option | translate}}
             </mat-option>
           </mat-autocomplete>
@@ -80,7 +79,7 @@
           </mat-checkbox>
         </section>
 
-        <button class="submit" mat-stroked-button (click)="onSubmit()" color="accent"> Submit </button>
+        <button class="submit" mat-stroked-button (click)="onSubmit()" color="accent"> {{'page_editor_submit' | translate}} </button>
       </form>
 
       <div class="clock">
